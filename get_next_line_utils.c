@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/27 17:10:43 by arsbadal          #+#    #+#             */
+/*   Updated: 2023/01/27 20:56:27 by arsbadal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 size_t ft_strlen(const char *s)
@@ -5,7 +17,7 @@ size_t ft_strlen(const char *s)
 	int i;
 
 	i = 0;
-	if (*s)
+	if (!*s)
 		return (i);
 	while (s[i])
 		i++;
@@ -70,7 +82,7 @@ char *ft_substr(char const *s, unsigned int start, size_t len)
 	size_t index;
 	size_t real_len;
 	char *str;
-
+	printf("%u - %lu:\n", start, len);
 	if (!s)
 		return (NULL);
 	real_len = ft_strlen(s);
