@@ -6,7 +6,7 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:10:35 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/01/27 17:10:37 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/01/28 17:01:23 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 // Function Prototypes
 char *get_next_line(int fd);
-char *ft_strjoin(const char *s1, const char *s2);
+char *ft_strjoin(char *s1, char *s2);
 size_t ft_strlen(const char *s);
 int ft_strchr(const char *str, int ch);
 char *ft_strdup(const char *s1);

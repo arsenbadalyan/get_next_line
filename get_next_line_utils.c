@@ -6,7 +6,7 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:10:43 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/01/27 20:56:27 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/01/28 15:48:13 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 size_t ft_strlen(const char *s)
 {
-	int i;
+	size_t i;
 
 	i = 0;
-	if (!*s)
+	if (!s || (s && !*s))
 		return (i);
 	while (s[i])
 		i++;
 	return (i);
 }
 
-char *ft_strjoin(const char *s1, const char *s2)
+char *ft_strjoin(char *s1, char *s2)
 {
 	char *str;
 	int i;
@@ -34,7 +34,9 @@ char *ft_strjoin(const char *s1, const char *s2)
 	str_index = -1;
 	if (!s1 || !s2)
 		return (NULL);
-	str = malloc(sizeof(char) * ft_strlen(s1) + sizeof(char) * ft_strlen(s2) + sizeof(char));
+	// printf("JOIN CALL: %lu - %lu\n", ft_strlen(s1), ft_strlen(s2));
+	// printf("JOIN CALL: %s - %s\n", s1, s2);
+	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!str)
 		return (NULL);
 	while (s1[++i])
@@ -43,6 +45,7 @@ char *ft_strjoin(const char *s1, const char *s2)
 	while (s2[++i])
 		str[++str_index] = s2[i];
 	str[++str_index] = '\0';
+	free(s1);
 	return (str);
 }
 
@@ -82,11 +85,10 @@ char *ft_substr(char const *s, unsigned int start, size_t len)
 	size_t index;
 	size_t real_len;
 	char *str;
-	printf("%u - %lu:\n", start, len);
 	if (!s)
 		return (NULL);
 	real_len = ft_strlen(s);
-	if (start > real_len)
+	if (start >= real_len)
 		return (ft_strdup(""));
 	if (len > real_len)
 		len = real_len;
@@ -94,13 +96,11 @@ char *ft_substr(char const *s, unsigned int start, size_t len)
 	if (!str)
 		return (NULL);
 	index = 0;
-	while (index <= len)
+	while (index < len)
 	{
 		str[index] = s[start + index];
 		index++;
 	}
-	// str[index] = '\0';
-	// puts("substr");
-	// printf("|%s|", str);
+	str[index] = '\0';
 	return (str);
 }
