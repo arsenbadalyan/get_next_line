@@ -6,15 +6,15 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:10:43 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/01/28 19:43:34 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/01/29 12:15:13 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	if (!s || (s && !*s))
@@ -24,11 +24,11 @@ size_t ft_strlen(const char *s)
 	return (i);
 }
 
-char *ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	char *str;
-	int i;
-	int str_index;
+	char	*str;
+	int		i;
+	int		str_index;
 
 	i = -1;
 	str_index = -1;
@@ -43,14 +43,14 @@ char *ft_strjoin(char *s1, char *s2)
 	while (s2[++i])
 		str[++str_index] = s2[i];
 	str[++str_index] = '\0';
-	if(s1)
+	if (s1)
 		free(s1);
 	return (str);
 }
 
-int ft_strchr(const char *str, int ch)
+int	ft_strchr(const char *str, int ch)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -59,15 +59,13 @@ int ft_strchr(const char *str, int ch)
 			return (i);
 		i++;
 	}
-	// if (str[i] == ch)
-	// 	return (i);
 	return (-1);
 }
 
-char *ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
-	int i;
-	char *ptr_str;
+	int		i;
+	char	*ptr_str;
 
 	i = -1;
 	ptr_str = (char *)malloc((sizeof(char) * (ft_strlen(s1) + 1)));
@@ -79,11 +77,12 @@ char *ft_strdup(const char *s1)
 	return (ptr_str);
 }
 
-char *ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t index;
-	size_t real_len;
-	char *str;
+	size_t	index;
+	size_t	real_len;
+	char	*str;
+
 	if (!s)
 		return (NULL);
 	real_len = ft_strlen(s);
