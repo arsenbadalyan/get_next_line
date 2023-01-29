@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:10:29 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/01/29 16:28:45 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/01/29 20:22:01 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	free_me(char **addr)
 {
@@ -79,21 +79,21 @@ char	*start_read(int fd, char **cache)
 
 char	*get_next_line(int fd)
 {
-	static char	*cache;
+	static char	*cache[OPEN_MAX];
 	char		*next_line;
 
-	if (BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0 || fd < 0)
+	if (BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0 || fd < 0 || fd > OPEN_MAX)
 		return (NULL);
-	if (cache && ft_strlen(cache) && ft_strchr(cache, '\n') != -1)
+	if (cache[fd] && ft_strlen(cache[fd]) && ft_strchr(cache[fd], '\n') != -1)
 	{
-		next_line = ft_substr(cache, 0, ft_strchr(cache, '\n') + 1);
-		cache = free_substr(cache, ft_strchr(cache, '\n')
-				+ 1, ft_strlen(cache) + 1);
+		next_line = ft_substr(cache[fd], 0, ft_strchr(cache[fd], '\n') + 1);
+		cache[fd] = free_substr(cache[fd], ft_strchr(cache[fd], '\n')
+				+ 1, ft_strlen(cache[fd]) + 1);
 		return (next_line);
 	}
-	next_line = start_read(fd, &cache);
-	if (cache && *cache == '\0')
-		free_me(&cache);
+	next_line = start_read(fd, &cache[fd]);
+	if (cache[fd] && *cache[fd] == '\0')
+		free_me(&cache[fd]);
 	if (next_line && *next_line == '\0')
 		free_me(&next_line);
 	if (!next_line)
