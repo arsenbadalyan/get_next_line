@@ -6,7 +6,7 @@
 /*   By: arsbadal <arsbadal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:10:43 by arsbadal          #+#    #+#             */
-/*   Updated: 2023/01/28 15:48:13 by arsbadal         ###   ########.fr       */
+/*   Updated: 2023/01/28 19:43:34 by arsbadal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ char *ft_strjoin(char *s1, char *s2)
 	str_index = -1;
 	if (!s1 || !s2)
 		return (NULL);
-	// printf("JOIN CALL: %lu - %lu\n", ft_strlen(s1), ft_strlen(s2));
-	// printf("JOIN CALL: %s - %s\n", s1, s2);
 	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!str)
 		return (NULL);
@@ -45,7 +43,8 @@ char *ft_strjoin(char *s1, char *s2)
 	while (s2[++i])
 		str[++str_index] = s2[i];
 	str[++str_index] = '\0';
-	free(s1);
+	if(s1)
+		free(s1);
 	return (str);
 }
 
